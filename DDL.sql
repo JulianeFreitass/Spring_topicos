@@ -1,10 +1,13 @@
+drop user if exists 'root'@'localhost';
+drop schema if exists anotacao;
+
 create schema anotacao;
 
 use anotacao;
 
-create user 'root'@'localhost' identified by 'admin';
+create user 'root'@'localhost' identified by 'root';
 
-grant select, insert, delete, update on anotacao.* to user@'localhost';
+grant select, insert, delete, update on anotacao.* to root@'localhost';
 
 create table usr_usuario (
   usr_id bigint unsigned not null auto_increment,
@@ -13,3 +16,6 @@ create table usr_usuario (
   primary key (usr_id),
   unique key uni_usuario_nome (usr_nome)
 );
+
+insert into usr_usuario (usr_nome, usr_senha)
+    values ('admin', '$2a$10$i3.Z8Yv1Fwl0I5SNjdCGkOTRGQjGvHjh/gMZhdc3e7LIovAklqM6C');
